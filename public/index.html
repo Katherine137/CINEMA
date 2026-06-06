@@ -86,6 +86,15 @@
             </div>
         </div>
     </div>
+    <div id="deleteModal" class="modal-edit">
+        <div class="modal-delete-form">
+            <p class="delete-modal-text">Esta acción no se puede deshacer.</p>
+            <div class="modal-edit-buttons">
+                <button class="button" onclick="document.getElementById('deleteModal').style.display='none'">Cancelar</button>
+                <button class="button primary" id="confirmDeleteBtn">Eliminar</button>
+            </div>
+        </div>
+    </div>
     <script>
         const apiBase = '/api/peliculas';
         async function showDetail(id) {
@@ -155,11 +164,20 @@
             modal.style.display = 'flex';
         }
 
-        async function deleteMovie(id) {
-            if (!confirm('¿Eliminar esta película?')) return;
-            await fetch(apiBase + '/' + id, { method: 'DELETE' });
-            renderMovies();
+        let pendingDeleteId = null;
+
+        function deleteMovie(id) {
+            pendingDeleteId = id;
+            document.getElementById('deleteModal').style.display = 'flex';
         }
+
+        document.getElementById('confirmDeleteBtn').onclick = async () => {
+            if (!pendingDeleteId) return;
+            await fetch(apiBase + '/' + pendingDeleteId, { method: 'DELETE' });
+            document.getElementById('deleteModal').style.display = 'none';
+            pendingDeleteId = null;
+            renderMovies();
+        };
 
         async function editMovie(id) {
             const res = await fetch(apiBase);

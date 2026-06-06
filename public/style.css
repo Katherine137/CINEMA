@@ -24,5 +24,7 @@ input, select { padding: 10px; border-radius: 2px; border: 1px solid #444; backg
 .modal-detail-form h3 { text-align: center; margin: 0;}
 .modal-detail-form p { margin: 0; color: white; font-size: 14px;}
 .modal-detail-form img { width: 100%; border-radius: 10px;}
+#deleteModal .modal-delete-form { background: #181818; text-align: center; padding: 2rem 1.75rem; max-width: 320px; border-radius: 10px;}
+.delete-modal-text { color: #666; font-size: 14px; margin: 0 0 1.75rem;}
 .file-btn { padding: 10px 20px; border-radius: 10px; border: none; cursor: pointer; font-weight: 500; background: #333; color: white; display: inline-block;}
 .btn-cerrar { position: absolute; top: 20px; right: 20px; background: #e50914; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 10px;}
